@@ -8,33 +8,31 @@ export default function LoginPage() {
      const emailInput = useRef();
      const passwordInput = useRef();
 
-      const hadelLogin = (event)=>{
-        event.preventDefault();
-         let email = emailInput.current.value;
-         let password = passwordInput.current.value;
-         let user = JSON.parse(localStorage.getItem("user") ) || [];
+    const hadelLogin = (event) => {
+  event.preventDefault();
+  let email = emailInput.current.value;
+  let password = passwordInput.current.value;
+  let users = JSON.parse(localStorage.getItem("users")) || [];
 
-          
-          localStorage.setItem("user" , JSON.stringify(user) );
-           
-           let userHere = user.some((el)=>{
-                return el.email == email && el.password == password;
-           })
-          if(userHere){
-             localStorage.setItem("userActive" , email)
-             alert("login success");
-             navigate('/HomePage')
+  let userHere = users.some((el) => {
+    return el.email === email && el.password == password;
+  });
 
-          }else{
-             alert('wrong email and password')
-          }
-            
-      }
+  if (userHere) {
+    localStorage.setItem("userActive", email);
+    alert("login success");
+    navigate("/HomePage");
+  } else {
+    alert("wrong email and password");
+  }
+};
+
+
        useEffect(()=>{
 
           let users = localStorage.getItem('users');
       if (!users) {
-          localStorage.setItem('users', JSON.stringify([{ email: 'ali@icloud.com', password: 123456 }]));
+          localStorage.setItem('users', JSON.stringify([{ email: 'moaz@gamil.com', password: 123456 }]));
          }
 
            let ActiveUSER = localStorage.getItem('userActive')
